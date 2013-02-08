@@ -7,7 +7,6 @@ DEPENDS = "openssl"
 
 SRC_URI = "http://nodejs.org/dist/v${PV}/node-v${PV}.tar.gz \
            file://0001-gcc-has-a-builtin-define-to-denote-hard-abi-when-in-.patch \
-           file://0003-Resolve-bad-rpath-issue-when-linking.patch \
 "
 SRC_URI[md5sum] = "25ed6aa5710ac46b867ff3f17a4da1d6"
 SRC_URI[sha256sum] = "1d63dd42f9bd22f087585ddf80a881c6acbe1664891b1dda3b71306fe9ae00f9"
@@ -22,34 +21,13 @@ ARCHFLAGS ?= ""
 
 # Node is way too cool to use proper autotools, so we install two wrappers to forcefully inject proper arch cflags to workaround gypi
 do_configure () {
-  echo '#!/bin/sh' > ${WORKDIR}/gcc
-  echo '${CC} $@' >> ${WORKDIR}/gcc
-
-  echo '#!/bin/sh' > ${WORKDIR}/g++
-  echo '${CXX} $@'>> ${WORKDIR}/g++
-
-  echo '#!/bin/sh' > ${WORKDIR}/ld
-  echo '${CXX} $@'>> ${WORKDIR}/ld
-
-  chmod +x ${WORKDIR}/gcc ${WORKDIR}/g++ ${WORKDIR}/ld
-
-  export PATH=${WORKDIR}:${PATH}
-  export CC=gcc
-  export CXX=g++
-  export LD=ld
+  export LD="${CXX}"
 
   ./configure --prefix=${prefix} --without-snapshot ${ARCHFLAGS}
 }
 
-do_compile_virtclass-native () {
-  make BUILDTYPE=Release
-}
-
 do_compile () {
-  export PATH=${WORKDIR}:${PATH}
-  export CC=gcc
-  export CXX=g++
-  export LD=ld
+  export LD="${CXX}"
   make BUILDTYPE=Release
 }
 
