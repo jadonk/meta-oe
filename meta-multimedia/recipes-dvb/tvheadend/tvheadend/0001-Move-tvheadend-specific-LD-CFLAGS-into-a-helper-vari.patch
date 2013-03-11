@@ -1,4 +1,4 @@
-From 2ee64b359464b48f751683faa5ded3ee8200fe90 Mon Sep 17 00:00:00 2001
+From 7efafc1226366c085f86b62874a4e5b0f29868bc Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Fri, 21 Dec 2012 10:15:42 +0100
 Subject: [PATCH] Move tvheadend specific LD/CFLAGS into a helper variable to
@@ -13,10 +13,10 @@ Upstream-status: Inappropriate [OE specific]
  2 files changed, 14 insertions(+), 14 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 8c6b293..daf5f14 100644
+index ac9a3e8..a008b84 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -27,12 +27,12 @@ PROG = ${BUILDDIR}/tvheadend
+@@ -27,12 +27,12 @@ PROG    := $(BUILDDIR)/tvheadend
  # Common compiler flags
  #
  
@@ -24,21 +24,21 @@ index 8c6b293..daf5f14 100644
 -CFLAGS  += -Wmissing-prototypes -fms-extensions
 -CFLAGS  += -g -funsigned-char -O2 
 -CFLAGS  += -D_FILE_OFFSET_BITS=64
--CFLAGS  += -I${BUILDDIR} -I${CURDIR}/src -I${CURDIR}
+-CFLAGS  += -I${BUILDDIR} -I${ROOTDIR}/src -I${ROOTDIR}
 -LDFLAGS += -lrt -ldl -lpthread -lm
 +TVH_CFLAGS  += -Wall -Werror -Wwrite-strings -Wno-deprecated-declarations
 +TVH_CFLAGS  += -Wmissing-prototypes -fms-extensions
 +TVH_CFLAGS  += -g -funsigned-char -O2 
 +TVH_CFLAGS  += -D_FILE_OFFSET_BITS=64
-+TVH_CFLAGS  += -I${BUILDDIR} -I${CURDIR}/src -I${CURDIR}
++TVH_CFLAGS  += -I${BUILDDIR} -I${ROOTDIR}/src -I${ROOTDIR}
 +TVH_LDFLAGS += -lrt -ldl -lpthread -lm
  
- #
- # Other config
-@@ -179,8 +179,8 @@ SRCS-${CONFIG_CWC}  += src/ffdecsa/ffdecsa_interface.c \
- 	src/ffdecsa/ffdecsa_int.c
+ vpath %.c $(ROOTDIR)
+ vpath %.h $(ROOTDIR)
+@@ -202,8 +202,8 @@ ifeq ($(CONFIG_CWC),yes)
  SRCS-${CONFIG_MMX}  += src/ffdecsa/ffdecsa_mmx.c
  SRCS-${CONFIG_SSE2} += src/ffdecsa/ffdecsa_sse2.c
+ endif
 -${BUILDDIR}/src/ffdecsa/ffdecsa_mmx.o  : CFLAGS += -mmmx
 -${BUILDDIR}/src/ffdecsa/ffdecsa_sse2.o : CFLAGS += -msse2
 +${BUILDDIR}/src/ffdecsa/ffdecsa_mmx.o  : TVH_CFLAGS += -mmmx
@@ -46,26 +46,26 @@ index 8c6b293..daf5f14 100644
  endif
  
  # File bundles
-@@ -217,12 +217,12 @@ all: ${PROG}
+@@ -250,12 +250,12 @@ reconfigure:
  
  # Binary
- ${PROG}: $(OBJS) $(ALLDEPS)
+ ${PROG}: check_config $(OBJS) $(ALLDEPS)
 -	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LDFLAGS)
 +	$(CC) -o $@ $(OBJS) $(TVH_CFLAGS) $(TVH_LDFLAGS) $(CFLAGS) $(LDFLAGS)
  
  # Object
  ${BUILDDIR}/%.o: %.c
  	@mkdir -p $(dir $@)
--	$(CC) -MD -MP $(CFLAGS) -c -o $@ $(CURDIR)/$<
-+	$(CC) -MD -MP $(TVH_CFLAGS) $(CFLAGS) -c -o $@ $(CURDIR)/$<
+-	$(CC) -MD -MP $(CFLAGS) -c -o $@ $<
++	$(CC) -MD -MP $(TVH_CFLAGS) $(CFLAGS) -c -o $@ $<
  
  # Add-on
  ${BUILDDIR}/%.so: ${SRCS_EXTRA}
 diff --git a/support/configure.inc b/support/configure.inc
-index 0130880..332511e 100644
+index 9ff2a1e..c22f39c 100755
 --- a/support/configure.inc
 +++ b/support/configure.inc
-@@ -464,8 +464,8 @@ ifeq (\$(origin CC),default)
+@@ -473,8 +473,8 @@ ifeq (\$(origin CC),default)
  CC        = ${CC}
  endif
  PYTHON   ?= ${PYTHON}
@@ -76,10 +76,10 @@ index 0130880..332511e 100644
  prefix    = ${prefix}
  bindir    = ${bindir}
  mandir    = ${mandir}
-@@ -482,8 +482,8 @@ EOF
+@@ -491,8 +491,8 @@ EOF
    # Add package config
    for pkg in ${PACKAGES[*]}; do
-     cat >>${CONFIG_MK} <<EOF
+     cat >>"${CONFIG_MK}" <<EOF
 -LDFLAGS += $(pkg-config --libs $pkg)
 -CFLAGS  += $(pkg-config --cflags $pkg)
 +TVH_LDFLAGS += $(pkg-config --libs $pkg)
@@ -88,5 +88,5 @@ index 0130880..332511e 100644
    done
  
 -- 
-1.7.7.6
+1.7.7
 
