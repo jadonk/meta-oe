@@ -17,7 +17,7 @@ SRC_URI = "svn://code.opencv.org/svn/opencv/branches/2.4;module=opencv;protocol=
 SRCREV = "8988"
 
 PV = "2.4.2"
-PR = "r2"
+PR = "r3"
 
 S = "${WORKDIR}/opencv"
 
@@ -27,6 +27,7 @@ EXTRA_OECMAKE = "-DPYTHON_NUMPY_INCLUDE_DIRS=${STAGING_LIBDIR}/${PYTHON_DIR}/sit
                  -DWITH_GSTREAMER=OFF \
                  -DWITH_V4L=ON \
                  -DWITH_GTK=ON \
+                 ${@bb.utils.contains("TARGET_CC_ARCH", "-msse3", "-DENABLE_SSE=1 -DENABLE_SSE2=1 -DENABLE_SSE3=1 -DENABLE_SSSE3=1", "", d)} \
                 "
 
 # Do an out-of-tree build
