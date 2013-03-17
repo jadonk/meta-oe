@@ -29,6 +29,10 @@ EXTRA_OECMAKE = "-DPYTHON_NUMPY_INCLUDE_DIRS=${STAGING_LIBDIR}/${PYTHON_DIR}/sit
                  -DWITH_GTK=ON \
                 "
 
+# Do an out-of-tree build
+OECMAKE_SOURCEPATH = "${S}"
+OECMAKE_BUILDPATH = "${WORKDIR}/build-${TARGET_ARCH}"
+
 inherit distutils-base pkgconfig cmake
 
 export BUILD_SYS
