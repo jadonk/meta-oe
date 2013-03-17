@@ -11,12 +11,13 @@ DEPENDS = "python-numpy v4l-utils libav gtk+ libtool swig swig-native python jpe
 
 SRC_URI = "svn://code.opencv.org/svn/opencv/branches/2.4;module=opencv;protocol=http \
            file://0001-Fix-CMakeLists.txt-numpy-detection.patch \
+           file://0001-opencv-pkgconfig-fix-cmake-entries-to-abstract-libdi.patch \
           "
 
 SRCREV = "8988"
 
 PV = "2.4.2"
-PR = "r1"
+PR = "r2"
 
 S = "${WORKDIR}/opencv"
 
