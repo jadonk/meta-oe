@@ -1,0 +1,27 @@
+From fdb5185d412f88dbccb8afcd3e3479d37e707a08 Mon Sep 17 00:00:00 2001
+From: Lennart Poettering <lennart@poettering.net>
+Date: Thu, 3 Jan 2013 22:37:38 +0100
+Subject: [PATCH 2/4] readahead: don't complain that we cannot precache
+ symlinks
+
+http://lists.freedesktop.org/archives/systemd-devel/2012-December/007847.html
+---
+ src/readahead/readahead-replay.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/readahead/readahead-replay.c b/src/readahead/readahead-replay.c
+index a1ac6b0..cb04e5f 100644
+--- a/src/readahead/readahead-replay.c
++++ b/src/readahead/readahead-replay.c
+@@ -64,7 +64,7 @@ static int unpack_file(FILE *pack) {
+         fd = open(fn, O_RDONLY|O_CLOEXEC|O_NOATIME|O_NOCTTY|O_NOFOLLOW);
+         if (fd < 0) {
+ 
+-                if (errno != ENOENT && errno != EPERM && errno != EACCES)
++                if (errno != ENOENT && errno != EPERM && errno != EACCES && errno != ELOOP)
+                         log_warning("open(%s) failed: %m", fn);
+ 
+         } else if (file_verify(fd, fn, arg_file_size_max, &st) <= 0) {
+-- 
+1.8.1.4
+
