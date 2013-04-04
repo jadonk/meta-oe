@@ -8,8 +8,8 @@ DEPENDS = "openssl"
 SRC_URI = "http://nodejs.org/dist/v${PV}/node-v${PV}.tar.gz \
            file://0001-gcc-has-a-builtin-define-to-denote-hard-abi-when-in-.patch \
 "
-SRC_URI[md5sum] = "25ed6aa5710ac46b867ff3f17a4da1d6"
-SRC_URI[sha256sum] = "1d63dd42f9bd22f087585ddf80a881c6acbe1664891b1dda3b71306fe9ae00f9"
+SRC_URI[md5sum] = "9f0e37afdc1e1005363940ada58c5f3d"
+SRC_URI[sha256sum] = "3f61152cf5cd8fc1ab5c6c18101819841b947da79e1e44b51418c0ad2e6db8e8"
 
 S = "${WORKDIR}/node-v${PV}"
 
