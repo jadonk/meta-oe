@@ -1,0 +1,190 @@
+From c144287d76faca356727d10e0458dba613f9526c Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Wed, 10 Apr 2013 15:58:25 +0200
+Subject: [PATCH 2/3] disable help build
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+
+Upstream-status: Inappropriate [version no longer being developed]
+---
+ accessx-status/Makefile.am | 2 +-
+ battstat/Makefile.am       | 2 +-
+ charpick/Makefile.am       | 2 --
+ cpufreq/Makefile.am        | 2 +-
+ drivemount/Makefile.am     | 2 --
+ geyes/Makefile.am          | 4 ++--
+ gswitchit/Makefile.am      | 1 -
+ gweather/Makefile.am       | 2 --
+ invest-applet/Makefile.am  | 2 +-
+ mini-commander/Makefile.am | 2 +-
+ mixer/Makefile.am          | 2 --
+ modemlights/Makefile.am    | 2 --
+ multiload/Makefile.am      | 2 --
+ stickynotes/Makefile.am    | 2 +-
+ trashapplet/Makefile.am    | 2 +-
+ 15 files changed, 9 insertions(+), 22 deletions(-)
+
+diff --git a/accessx-status/Makefile.am b/accessx-status/Makefile.am
+index c0f8362..33c9768 100644
+--- a/accessx-status/Makefile.am
++++ b/accessx-status/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = docs pixmaps
++SUBDIRS = pixmaps
+ 
+ INCLUDES = \
+ 	$(GNOME_APPLETS3_CFLAGS) \
+diff --git a/battstat/Makefile.am b/battstat/Makefile.am
+index a9599e3..fcc6b91 100644
+--- a/battstat/Makefile.am
++++ b/battstat/Makefile.am
+@@ -19,7 +19,7 @@ APMDIR =
+ APMINC = 
+ endif
+ 
+-SUBDIRS = docs sounds $(APMDIR)
++SUBDIRS = sounds $(APMDIR)
+ 
+ DIST_SUBDIRS = docs sounds apmlib
+ 
+diff --git a/charpick/Makefile.am b/charpick/Makefile.am
+index f305714..a1c9153 100644
+--- a/charpick/Makefile.am
++++ b/charpick/Makefile.am
+@@ -1,5 +1,3 @@
+-SUBDIRS = help
+-
+ INCLUDES =					\
+ 	-I.					\
+ 	-I$(srcdir)				\
+diff --git a/cpufreq/Makefile.am b/cpufreq/Makefile.am
+index 70f1e9c..ac1a202 100644
+--- a/cpufreq/Makefile.am
++++ b/cpufreq/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = help pixmaps src
++SUBDIRS = pixmaps src
+ 
+ schemasdir       = @GCONF_SCHEMA_FILE_DIR@
+ schemas_in_files = cpufreq-applet.schemas.in
+diff --git a/drivemount/Makefile.am b/drivemount/Makefile.am
+index 3699281..f9f3d75 100644
+--- a/drivemount/Makefile.am
++++ b/drivemount/Makefile.am
+@@ -1,5 +1,3 @@
+-SUBDIRS = help
+-
+ INCLUDES =					\
+ 	-I.					\
+ 	-I$(srcdir)				\
+diff --git a/geyes/Makefile.am b/geyes/Makefile.am
+index 7668b4c..3533540 100644
+--- a/geyes/Makefile.am
++++ b/geyes/Makefile.am
+@@ -1,10 +1,10 @@
+-SUBDIRS = themes docs
++SUBDIRS = themes
+ 
+ INCLUDES =						\
+ 	-I.						\
+ 	-I$(srcdir) 					\
+ 	$(GNOME_APPLETS3_CFLAGS)			\
+-	-I$(includedir) 				\
++	 				\
+ 	-DGEYES_THEMES_DIR=\""$(pkgdatadir)/geyes/"\"	\
+ 	-DGEYES_MENU_UI_DIR=\""$(uidir)"\"
+ 
+diff --git a/gswitchit/Makefile.am b/gswitchit/Makefile.am
+index 15831f8..e69de29 100644
+--- a/gswitchit/Makefile.am
++++ b/gswitchit/Makefile.am
+@@ -1 +0,0 @@
+-SUBDIRS = help
+diff --git a/gweather/Makefile.am b/gweather/Makefile.am
+index ea6ac96..c6406bb 100644
+--- a/gweather/Makefile.am
++++ b/gweather/Makefile.am
+@@ -1,7 +1,5 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-SUBDIRS = docs
+-
+ INCLUDES =					\
+ 	-I$(srcdir)				\
+ 	-I$(top_srcdir)				\
+diff --git a/invest-applet/Makefile.am b/invest-applet/Makefile.am
+index 13f7ce1..cf8b739 100644
+--- a/invest-applet/Makefile.am
++++ b/invest-applet/Makefile.am
+@@ -1,3 +1,3 @@
+-SUBDIRS = invest data docs
++SUBDIRS = invest data
+ 
+ -include $(top_srcdir)/git.mk
+diff --git a/mini-commander/Makefile.am b/mini-commander/Makefile.am
+index 8aeda4a..9cd41df 100644
+--- a/mini-commander/Makefile.am
++++ b/mini-commander/Makefile.am
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-DIST_SUBDIRS = src help
++DIST_SUBDIRS = src
+ 
+ server_in_files =                               \
+ 	GNOME_MiniCommanderApplet.server.in
+diff --git a/mixer/Makefile.am b/mixer/Makefile.am
+index 06ab328..0cc4540 100644
+--- a/mixer/Makefile.am
++++ b/mixer/Makefile.am
+@@ -1,5 +1,3 @@
+-SUBDIRS = docs
+-
+ INCLUDES = -I. -I$(srcdir) 			\
+ 	-DMIXER_MENU_UI_DIR=\""$(uidir)"\"	\
+ 	$(MIXER_CFLAGS)				\
+diff --git a/modemlights/Makefile.am b/modemlights/Makefile.am
+index cb692ee..7c5bf73 100644
+--- a/modemlights/Makefile.am
++++ b/modemlights/Makefile.am
+@@ -1,5 +1,3 @@
+-#SUBDIRS = docs
+-
+ INCLUDES = -I. -I$(srcdir) 				\
+ 	-DMODEM_MENU_UI_DIR=\""$(uidir)"\"		\
+ 	$(GNOME_APPLETS3_CFLAGS)
+diff --git a/multiload/Makefile.am b/multiload/Makefile.am
+index 53b3147..ebfd2af 100644
+--- a/multiload/Makefile.am
++++ b/multiload/Makefile.am
+@@ -1,5 +1,3 @@
+-SUBDIRS = docs
+-
+ INCLUDES =			\
+ 	-I$(srcdir)		\
+ 	-DMULTILOAD_MENU_UI_DIR=\""$(uidir)"\" \
+diff --git a/stickynotes/Makefile.am b/stickynotes/Makefile.am
+index c279952..e1a7a92 100644
+--- a/stickynotes/Makefile.am
++++ b/stickynotes/Makefile.am
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-SUBDIRS = pixmaps docs data
++SUBDIRS = pixmaps data
+ 
+ ui_files = stickynotes-applet-menu.xml
+ builder_files = stickynotes.ui
+diff --git a/trashapplet/Makefile.am b/trashapplet/Makefile.am
+index b47ff9c..17a679b 100644
+--- a/trashapplet/Makefile.am
++++ b/trashapplet/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = src docs
++SUBDIRS = src
+ 
+ appletdir       = $(datadir)/gnome-panel/applets
+ applet_in_files = org.gnome.applets.TrashApplet.panel-applet.in
+-- 
+1.8.1.4
+
