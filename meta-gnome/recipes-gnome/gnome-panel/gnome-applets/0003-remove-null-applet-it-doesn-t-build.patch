@@ -1,0 +1,52 @@
+From 700122035c9bcae3460536f0d53b32969cd5db5b Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Wed, 10 Apr 2013 16:13:45 +0200
+Subject: [PATCH 3/3] remove null applet, it doesn't build
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+
+Upstream-status: Inappropriate [version no longer being developed]
+---
+ Makefile.am  | 6 ++----
+ configure.in | 1 -
+ 2 files changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index f32ffc2..020e007 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -43,8 +43,7 @@ always_built_SUBDIRS =  \
+ 	mini-commander	\
+ 	gkb-new		\
+ 	stickynotes	\
+-	trashapplet	\
+-	null_applet
++	trashapplet
+ 
+ SUBDIRS = \
+ 	po			\
+@@ -77,8 +76,7 @@ DIST_SUBDIRS = \
+ 	trashapplet	\
+ 	cpufreq		\
+ 	invest-applet	\
+-	mixer 		\
+-	null_applet
++	mixer
+ 
+ EXTRA_DIST = \
+ 	MAINTAINERS			\
+diff --git a/configure.in b/configure.in
+index d976856..9f34861 100644
+--- a/configure.in
++++ b/configure.in
+@@ -722,7 +722,6 @@ cpufreq/src/Makefile
+ cpufreq/src/cpufreq-selector/Makefile
+ cpufreq/pixmaps/Makefile
+ cpufreq/help/Makefile
+-null_applet/Makefile
+ ])
+ 
+ dnl ***************************************************************************
+-- 
+1.8.1.4
+
