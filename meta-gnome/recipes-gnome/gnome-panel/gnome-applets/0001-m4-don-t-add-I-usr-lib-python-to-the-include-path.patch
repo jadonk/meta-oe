@@ -1,0 +1,28 @@
+From 1ba087b719437f32a5df0bee1675f645cb12f185 Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Thu, 11 Apr 2013 08:11:50 +0200
+Subject: [PATCH] m4: don't add -I/usr/lib/python to the include path
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+
+Upstream-status: Inappropriate [version no longer being developed]
+---
+ m4/python.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/m4/python.m4 b/m4/python.m4
+index e1c5266..ae78450 100644
+--- a/m4/python.m4
++++ b/m4/python.m4
+@@ -52,7 +52,7 @@ fi
+ AC_SUBST(PYTHON_INCLUDES)
+ dnl check if the headers exist:
+ save_CPPFLAGS="$CPPFLAGS"
+-CPPFLAGS="$CPPFLAGS $PYTHON_INCLUDES"
++CPPFLAGS="$CPPFLAGS "
+ AC_TRY_CPP([#include <Python.h>],dnl
+ [AC_MSG_RESULT(found)
+ $1],dnl
+-- 
+1.8.1.4
+

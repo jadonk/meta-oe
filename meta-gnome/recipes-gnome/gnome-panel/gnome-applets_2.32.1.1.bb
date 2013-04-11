@@ -9,6 +9,7 @@ SRC_URI += " \
             file://0001-configure-remove-libpanelapplet2-dependency.patch \
             file://0002-disable-help-build.patch \
             file://0003-remove-null-applet-it-doesn-t-build.patch \
+            file://0001-m4-don-t-add-I-usr-lib-python-to-the-include-path.patch \
 "
 
 SRC_URI[archive.md5sum] = "031c207a18707263828b4a4fd784bbe4"
