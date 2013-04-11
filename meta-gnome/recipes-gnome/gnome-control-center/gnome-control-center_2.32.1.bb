@@ -15,6 +15,7 @@ do_configure_prepend() {
 	sed -i s:help::g Makefile.am
 }
 
+RDEPENDS += "gnome-common-schemas"
 FILES_${PN} += "${datadir}/icon* \
                 ${datadir}/xsession* \
                 ${libdir}/window-manager-settings/*.so \
