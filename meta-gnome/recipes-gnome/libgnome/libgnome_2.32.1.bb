@@ -18,8 +18,13 @@ do_configure_prepend() {
 	echo "EXTRA_DIST = version.xml" > gtk-doc.make
 }
 
-FILES_${PN} += "${libdir}/bonobo/servers ${libdir}/bonobo/monikers/*.so \
-                ${datadir}/gnome-background-properties ${datadir}/pixmaps"
+PACKAGES =+ "gnome-common-schemas"
+
+FILES_gnome-common-schemas = "${datadir}/gnome-background-properties ${datadir}/pixmaps ${sysconfdir}"
+
+RDEPENDS_${PN} = "gnome-common-schemas"
+
+FILES_${PN} += "${libdir}/bonobo/servers ${libdir}/bonobo/monikers/*.so"
 FILES_${PN}-dev += "${libdir}/bonobo/monikers/*a"
 FILES_${PN}-dbg += "${libdir}/bonobo/monikers/.debug"
 
