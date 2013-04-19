@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=4784c3bcff601fd8f9515f52a11e7018"
 
 PR = "r2"
 
-DEPENDS = "libxml2 nodejs4 nodejs-native"
+DEPENDS = "libxml2 nodejs4 nodejs-native nodejs4-native"
 
 SRC_URI = "git://github.com/ajaxorg/cloud9.git;name=cloud9ide \
            git://github.com/ajaxorg/o3;destsuffix=o3;name=o3 \
