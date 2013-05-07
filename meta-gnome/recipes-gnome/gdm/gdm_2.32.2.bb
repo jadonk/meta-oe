@@ -47,6 +47,9 @@ do_install_append() {
 	install -m 0755 ${WORKDIR}/Default ${D}/${sysconfdir}/gdm/Init
 
 	rm -f ${D}${datadir}/gdm/autostart/LoginWindow/at-spi-registryd-wrapper.desktop
+	rm -f ${D}${datadir}/gdm/autostart/LoginWindow/orca-screen-reader.desktop
+	rm -f ${D}${datadir}/gdm/autostart/LoginWindow/gnome-mag.desktop
+	rm -f ${D}${datadir}/gdm/autostart/LoginWindow/gok.desktop
 }
 
 FILES_${PN} += "${datadir}/icon* \
