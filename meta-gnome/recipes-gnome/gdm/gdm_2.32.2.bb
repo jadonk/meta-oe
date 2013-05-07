@@ -46,6 +46,7 @@ do_install_append() {
 	install -d ${D}/${sysconfdir}/gdm/Init
 	install -m 0755 ${WORKDIR}/Default ${D}/${sysconfdir}/gdm/Init
 
+	rm -f ${D}${datadir}/gdm/autostart/LoginWindow/at-spi-registryd-wrapper.desktop
 }
 
 FILES_${PN} += "${datadir}/icon* \
