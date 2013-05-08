@@ -1,0 +1,17 @@
+Index: gnome-applets-2.32.1.1/configure.in
+===================================================================
+--- gnome-applets-2.32.1.1.orig/configure.in
++++ gnome-applets-2.32.1.1/configure.in
+@@ -336,9 +336,9 @@ fi
+ 
+ dnl -- scrollkeeper -----------------------------------------------------------
+ AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
+-if test x$SCROLLKEEPER_CONFIG = xno; then
+-  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the Scrollkeeper 0.1.4 package)
+-fi
++dnl if test x$SCROLLKEEPER_CONFIG = xno; then
++dnl   AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the Scrollkeeper 0.1.4 package)
++dnl fi
+ AC_SUBST(SCROLLKEEPER_REQUIRED)
+ 
+ dnl -- jw ---------------------------------------------------------------------
