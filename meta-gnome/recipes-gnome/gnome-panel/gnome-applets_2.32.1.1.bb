@@ -3,6 +3,8 @@ DESCRIPTION = "Misc applets for Gnome panel"
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3bf50002aefd002f49e7bb854063f7e7"
 
+PR = "r1"
+
 inherit distutils-common-base gnome
 
 SRC_URI += " \
@@ -10,6 +12,7 @@ SRC_URI += " \
             file://0002-disable-help-build.patch \
             file://0003-remove-null-applet-it-doesn-t-build.patch \
             file://0001-m4-don-t-add-I-usr-lib-python-to-the-include-path.patch \
+            file://0004-disable-scrollkeeper.patch \
 "
 
 SRC_URI[archive.md5sum] = "031c207a18707263828b4a4fd784bbe4"
