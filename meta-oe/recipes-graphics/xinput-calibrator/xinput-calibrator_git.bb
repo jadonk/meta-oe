@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
 EXTRA_OECONF += "--with-gui=x11"
 
 do_install_prepend() {
-	sed -i -e 's,^Exec=.*,Exec=${bindir}/xinput_calibrator_once.sh,' scripts/xinput_calibrator.desktop
+	sed -i -e 's,^Exec=.*,Exec=${bindir}/xinput_calibrator_once.sh,' -e 's:Terminal=true:Terminal=false:' scripts/xinput_calibrator.desktop
 }
 
 do_install_append() {
