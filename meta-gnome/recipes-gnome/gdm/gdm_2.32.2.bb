@@ -12,6 +12,10 @@ SRC_URI += " \
             file://cross-xdetection.diff \
             file://0001-Remove-user-switch-applet.patch \
             file://sysrooted-pkg-config.patch \
+            file://0001-Don-t-use-a-null-icon.patch \
+            file://0002-user-chooser-widget-fix-ref-counting-issue-on-user-p.patch \
+            file://0003-user-chooser-try-to-find-fallback-icon-more-aggressi.patch \
+            file://0004-greeter-fix-swapped-LHS-RHS-in-icon-loading-error-pa.patch \
             file://%gconf-tree.xml \
             file://gdm \
             file://gdm.conf \

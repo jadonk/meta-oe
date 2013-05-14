@@ -1,0 +1,30 @@
+From aa21c269a823ba7b1ea84ff273e78f3d25d977b0 Mon Sep 17 00:00:00 2001
+From: William Jon McCann <jmccann@redhat.com>
+Date: Thu, 13 Jan 2011 23:34:56 -0500
+Subject: [PATCH 1/4] Don't use a null icon
+
+https://bugzilla.gnome.org/show_bug.cgi?id=639284
+---
+ gui/simple-greeter/gdm-user-chooser-widget.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/gui/simple-greeter/gdm-user-chooser-widget.c b/gui/simple-greeter/gdm-user-chooser-widget.c
+index 19a7922..8df255f 100644
+--- a/gui/simple-greeter/gdm-user-chooser-widget.c
++++ b/gui/simple-greeter/gdm-user-chooser-widget.c
+@@ -479,7 +479,11 @@ add_user (GdmUserChooserWidget *widget,
+                 return;
+         }
+ 
+-        pixbuf = g_object_ref (widget->priv->stock_person_pixbuf);
++        if (widget->priv->stock_person_pixbuf != NULL) {
++                pixbuf = g_object_ref (widget->priv->stock_person_pixbuf);
++        } else {
++                pixbuf = NULL;
++        }
+ 
+         tooltip = g_strdup_printf (_("Log in as %s"),
+                                    gdm_user_get_user_name (user));
+-- 
+1.8.1.4
+

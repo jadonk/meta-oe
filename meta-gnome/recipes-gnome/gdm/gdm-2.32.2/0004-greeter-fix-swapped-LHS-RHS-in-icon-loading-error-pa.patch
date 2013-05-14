@@ -1,0 +1,27 @@
+From 2dea5cdb39a39d842ef44242e2a464a62cbc0e54 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Fri, 18 Feb 2011 17:56:09 -0500
+Subject: [PATCH 4/4] greeter: fix swapped LHS/RHS in icon loading error path
+
+This nasty bug means in some obscure cases we're going to
+end up using freed memory.
+---
+ gui/simple-greeter/gdm-user-chooser-widget.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gui/simple-greeter/gdm-user-chooser-widget.c b/gui/simple-greeter/gdm-user-chooser-widget.c
+index 9447e59..4b5a80f 100644
+--- a/gui/simple-greeter/gdm-user-chooser-widget.c
++++ b/gui/simple-greeter/gdm-user-chooser-widget.c
+@@ -900,7 +900,7 @@ get_pixbuf_from_icon_names (GdmUserChooserWidget *widget,
+                                                    TRUE, 8, 1, 1, 1, NULL, NULL);
+                 scaled_pixbuf = gdk_pixbuf_scale_simple (pixbuf, size, size, GDK_INTERP_NEAREST);
+                 g_object_unref (pixbuf);
+-                scaled_pixbuf = pixbuf;
++                pixbuf = scaled_pixbuf;
+         }
+ 
+         return pixbuf;
+-- 
+1.8.1.4
+
