@@ -1,0 +1,38 @@
+From a65ad6683688bb427efefe5e52137928c2736137 Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Thu, 4 Apr 2013 13:04:03 +0200
+Subject: [PATCH] setup.py: remove init check, it looks outside the sysroot
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+---
+ setup.py | 14 --------------
+ 1 file changed, 14 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 00c8ba1..4568679 100755
+--- a/setup.py
++++ b/setup.py
+@@ -112,20 +112,6 @@ redhat_script = os.path.join(setup_dir, 'scripts/init/gateone-redhat.sh')
+ gentoo_script = os.path.join(setup_dir, 'scripts/init/gateone-gentoo.sh')
+ temp_script_path = os.path.join(setup_dir, 'build/gateone')
+ temp_confd_path = os.path.join(setup_dir, 'build/gateone')
+-if os.path.exists('/etc/debian_version'):
+-    shutil.copy(debian_script, temp_script_path)
+-elif os.path.exists('/etc/redhat-release'):
+-    shutil.copy(redhat_script, temp_script_path)
+-elif os.path.exists('/etc/gentoo-release'):
+-    shutil.copy(gentoo_script, temp_script_path)
+-    conf_file = [('/etc/conf.d', [
+-        os.path.join(setup_dir, 'scripts/conf/gateone')
+-    ])]
+-
+-if os.path.exists(temp_script_path):
+-    init_script = [('/etc/init.d', [
+-        temp_script_path
+-    ])]
+ 
+ # Put it all together
+ data_files = (
+-- 
+1.8.1.4
+
