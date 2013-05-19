@@ -18,7 +18,7 @@ SRC_URI += " \
 SRC_URI[archive.md5sum] = "031c207a18707263828b4a4fd784bbe4"
 SRC_URI[archive.sha256sum] = "2b92fe4b3062dfbe264f45472b4db3a27d1e69e13260d37da9fb36b2cbd40327"
 
-DEPENDS = "gtk+ glib-2.0 gconf gnome-desktop libxklavier libnotify dbus-glib gnome-icon-theme libxml2"
+DEPENDS += "gnome-panel gtk+ glib-2.0 gconf gnome-desktop libxklavier libnotify dbus-glib gnome-icon-theme libxml2"
 
 # NM is only used to ask the weather plugin to update on ifup
 EXTRA_OECONF = "--disable-gtk-doc --disable-scrollkeeper --enable-networkmanager=no"
