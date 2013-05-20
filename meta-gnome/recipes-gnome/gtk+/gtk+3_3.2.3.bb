@@ -7,7 +7,8 @@ SECTION = "libs"
 
 DEPENDS = "glib-2.0 pango atk jpeg libpng libxext libxcursor \
            gtk-doc-native docbook-utils-native libxrandr libgcrypt \
-           libxdamage libxrender libxcomposite cairo gdk-pixbuf gtk+-native"
+           libxdamage libxrender libxcomposite cairo gdk-pixbuf gtk+-native \
+           libxinerama"
 
 LICENSE = "LGPLv2 & LGPLv2+ & LGPLv2.1+"
 
