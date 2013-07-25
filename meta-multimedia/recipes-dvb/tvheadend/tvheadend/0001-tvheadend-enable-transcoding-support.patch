@@ -1,0 +1,26 @@
+From 433b7a1af3b6d2eb49527963fa9435683e452998 Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Wed, 24 Jul 2013 14:02:53 +0200
+Subject: [PATCH] tvheadend: enable transcoding support
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+---
+ src/plumbing/transcoding.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/plumbing/transcoding.c b/src/plumbing/transcoding.c
+index 5390646..ad8a2ab 100644
+--- a/src/plumbing/transcoding.c
++++ b/src/plumbing/transcoding.c
+@@ -111,7 +111,7 @@ typedef struct transcoder {
+ 			    x == CODEC_ID_MP2  || x == CODEC_ID_VORBIS)
+ 
+ 
+-uint32_t transcoding_enabled = 0;
++uint32_t transcoding_enabled = 1;
+ 
+ /**
+  * 
+-- 
+1.8.2.1
+
