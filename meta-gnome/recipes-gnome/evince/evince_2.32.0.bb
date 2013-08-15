@@ -6,7 +6,7 @@ DEPENDS = "gnome-icon-theme gnome-doc-utils-native libgnome-keyring nautilus tif
 
 PR = "r3"
 
-inherit gnome pkgconfig gtk-icon-cache
+inherit gnome pkgconfig gtk-icon-cache gsettings
 
 SRC_URI += "file://cross-compile-fix.patch"
 
@@ -37,10 +37,3 @@ FILES_${PN}-staticdev += "${libdir}/nautilus/extensions-2.0/*.a \
                           ${libdir}/evince/*/backends/*.a"
 FILES_${PN}-nautilus-extension = "${libdir}/nautilus/*/*so"
 
-pkg_postinst_${PN} () {
-if [ -n "$D" ]; then
-    exit 1
-fi
-
-glib-compile-schemas ${datadir}/glib-2.0/schemas
-}
