@@ -41,3 +41,7 @@ LEAD_SONAME = "libMagickCore.so.*"
 do_configure_prepend() {
     export ac_cv_sys_file_offset_bits=yes
 }
+
+do_install_append() {
+    mv ${D}${bindir}/stream ${D}${bindir}/stream.${PN}
+}
