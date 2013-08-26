@@ -22,6 +22,7 @@ PR = "r3"
 S = "${WORKDIR}/opencv"
 
 EXTRA_OECMAKE = "-DPYTHON_NUMPY_INCLUDE_DIRS=${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/include \
+                 -DPYTHON_NUMPY_INCLUDE_DIR=${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/include \
                  -DBUILD_PYTHON_SUPPORT=ON \
                  -DWITH_FFMPEG=ON \
                  -DWITH_GSTREAMER=OFF \
