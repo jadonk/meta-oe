@@ -25,3 +25,5 @@ do_install() {
     install -d ${D}${sysconfdir}/modules-load.d/
     echo mtnet7601Usta > ${D}${sysconfdir}/modules-load.d/mt7601.conf
 }
+
+FILES_${PN} += "${sysconfdir}"
