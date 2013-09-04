@@ -37,6 +37,7 @@ RCONFLICTS_${PN} += "task-basic"
 RDEPENDS_${PN} = "\
     ${TASK_BASIC_SSHDAEMON} \
     avahi-daemon avahi-utils \
+    nfs-utils-client \
 "
 
 #
